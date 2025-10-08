@@ -13,16 +13,21 @@ export const links = [
   },
   {
     id: 3,
+    url: "/experience",
+    text: "experience",
+  },
+  {
+    id: 4,
     url: "/contact",
     text: "contact",
   },
   {
-    id: 4,
+    id: 5,
     url: "/about",
     text: "about",
   },
   // {
-  //     id: 5,
+  //     id: 6,
   //     url: '/profile',
   //     text: 'profile',
   // },

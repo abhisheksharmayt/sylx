@@ -10,7 +10,7 @@ const firebaseConfig = {
 
 function App() {
   const [toggleTerminal, setToggleTerminal] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);  
   const checkKeyValues = (event: KeyboardEvent) => {
     if ((event.ctrlKey || event.metaKey) && event.key === "/") {
       setToggleTerminal(!toggleTerminal);

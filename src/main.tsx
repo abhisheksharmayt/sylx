@@ -14,6 +14,7 @@ import Contact from "./components/contact/Contact.tsx";
 import Work from "./components/videos/Work.tsx";
 import About from "./components/about/About.tsx";
 import Videos from "./components/videos/Videos.tsx";
+import Experience from "./components/experience/Experience.tsx";
 import Error from "./components/Error.tsx";
 import App from "./App.tsx";
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       {/* <Route path="/home" element={<Home />} /> */}
       <Route path="projects" element={<Projects />} />
+      <Route path="experience" element={<Experience />} />
       <Route path="contact" element={<Contact />} />
       <Route path="videos/:id" element={<Work />} />
       <Route path="about" element={<About />} />

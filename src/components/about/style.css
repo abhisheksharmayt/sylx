@@ -1,14 +1,19 @@
 .about-section {
     width: 80%;
 }
-.skills-section {
+.skills-section,
+.education-section,
+.experience-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 5rem 0;
 }
 
-.skills-section>.title {
+.skills-section>.title,
+.education-section>.title,
+.experience-section>.title {
     margin: 1.5em 0;
 }
 
@@ -18,21 +23,18 @@
     text-align: center;
 }
 
-.skills-section>.skills-div {
-    width: 70%;
-}
-
-.skills-section,
-.education-section {
-    margin: 5rem 0;
-}
-.education-info{
+.education-info,
+.skills-info,
+.experience-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 1rem;
 }
-.education-card{
+
+.education-card,
+.skills-card,
+.experience-card {
     width: 50%;
     min-width: 25rem;
     margin: 2rem 0rem;
@@ -41,19 +43,21 @@
     box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
     background-color: white;
 }
+
 .institution-title{
     margin: 15px 0;
 }
+
 .subjectInfo{
     color: var(--darkLightShade);
     margin: 10px 0;
     font-weight: 500;
 }
+
 @media(max-width: 800px) {
-    .skills-section>.skills-div {
-        width: 100%;
-    }
-    .education-card{
+    .education-card,
+    .skills-card,
+    .experience-card {
         width: 90%;
         min-width: 0;
     }

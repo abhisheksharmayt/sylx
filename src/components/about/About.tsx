@@ -1,6 +1,5 @@
-import { skills } from '../home/data'
 import './style.css'
-import { education } from './data'
+import { education, skillsData } from './data'
 
 const About = () => {
     return (
@@ -13,14 +12,15 @@ const About = () => {
                                 <h2 className='section-title'>Skills</h2>
                                 <div className='underline'></div>
                             </div>
-                            <div className="skills-div">
+                            <div className="skills-info">
                                 {
-                                    skills.map((icon) => {
-                                        const { id, name, svg } = icon;
+                                    skillsData.map((curr) => {
+                                        const { id, name, subjectInfo, moreInfo } = curr
                                         return (
-                                            <div key={id} className="icon-div">
-                                                {svg}
-                                                <p className='icon-title'>{name}</p>
+                                            <div key={id} className="skills-card">
+                                                <h4 className="institution-title">{name}</h4>
+                                                <p className='subjectInfo'>{subjectInfo}</p>
+                                                {moreInfo && <p className="moreInfo">{moreInfo}</p>}
                                             </div>
                                         )
                                     })
