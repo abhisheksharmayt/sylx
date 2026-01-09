@@ -1,0 +1,141 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./components/home/style.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.intro-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 4em 0;
+    padding: 2em;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+}
+
+
+.profile-pic {
+    /* position: relative; */
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    border-radius: 100%;
+    padding-top: 1em;
+    /* transition: all 0.3s; */
+}
+.profile-img-container{
+    position: relative;
+    transition: 0.3s all ease;
+}
+.profile-img-container:hover{
+    transform: rotate(-5deg);
+}
+.img-popup{
+    position: absolute;
+    top: 60px;
+    left: 170px;
+    width: max-content;
+    background-color: white;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+    padding: 0px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.img-popup::before{
+    width: 10px;
+    height: 10px;
+    background-color: red;
+}
+
+.intro {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    text-align: center;
+    margin: 0.6rem;
+}
+
+.name {
+    font-weight: 500;
+}
+
+.info {
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin: 0em;
+    padding: 1em;
+    text-align: center;
+}
+
+.github-div{
+    width: 100%;
+    margin: 0 1rem 2rem;
+    overflow-x: scroll;
+    display: flex;
+    justify-items: center;
+}
+.github-title{
+    font-size: 2em;
+    font-weight: 600;
+}
+.github-chart-img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skills-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
+    width: 70%;
+}
+
+.icon-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    margin: 5px 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.icon-title {
+    padding: 0 5px;
+}
+
+.icon-div>svg {
+    height: 25px;
+    width: 25px;
+}
+
+@media(max-width: 800px){
+    .intro{
+        font-size: 2em;
+    }
+    .info{
+        font-size: 0.9em;
+    }
+    .icon-title{
+        font-size: 0.9em;
+    }
+    .icon-div>svg{
+        height: 20px;
+        width: 20px;
+    }
+    .icon-div{
+        padding: 0 10px;
+    }
+    .skills-div{
+        width: 100%;
+    }
+    .github-title{
+        font-size: 1.5em;
+    }
+}
+
+
