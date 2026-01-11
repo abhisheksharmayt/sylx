@@ -26,6 +26,17 @@ export default function HomePage() {
         Basecamp for Utility Products
       </h1>
       
+      <p style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        marginTop: '1rem',
+        fontSize: '0.75rem',
+        color: '#999'
+      }}>
+        work in progress... 🔨
+      </p>
+      
       <Link 
         href="/archive" 
         className="portfolio-link"
