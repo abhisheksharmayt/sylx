@@ -1,0 +1,70 @@
+.about-section {
+    width: 80%;
+}
+.skills-section,
+.education-section,
+.experience-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+}
+
+.skills-section>.title,
+.education-section>.title,
+.experience-section>.title {
+    margin: 1.5em 0;
+}
+
+.section-title {
+    font-size: 2.5em;
+    margin: 0;
+    text-align: center;
+}
+
+.education-info,
+.skills-info,
+.experience-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.education-card,
+.skills-card,
+.experience-card {
+    width: 50%;
+    min-width: 25rem;
+    margin: 2rem 0rem;
+    padding: 1rem 3rem;
+    border-radius: 1em;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+    background-color: white;
+}
+
+.institution-title{
+    margin: 15px 0;
+}
+
+.subjectInfo{
+    color: var(--darkLightShade);
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+@media(max-width: 800px) {
+    .education-card,
+    .skills-card,
+    .experience-card {
+        width: 90%;
+        min-width: 0;
+    }
+    .subjectInfo{
+        font-size: 0.9em; 
+    }
+    .moreInfo{
+        font-size: 0.9em;
+    }
+}

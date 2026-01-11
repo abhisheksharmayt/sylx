@@ -1,37 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { initFirebase } from "@/lib/firebase";
-import Navbar from "@/components/navbar/Navbar";
-import Social from "@/components/social/social";
-import Terminal from "@/components/terminal/Terminal";
 import "@/styles/globals.css";
+import { getSubdomain } from "@/utils/common";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [toggleTerminal, setToggleTerminal] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  // Check if we are on users resume page
+  const isResumeBuilder = useMemo(() => getSubdomain(), []);
 
   useEffect(() => {
-    const checkKeyValues = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === "/") {
-        setToggleTerminal((prev) => !prev);
-      }
-    };
-
     // Initialize Firebase (will gracefully handle missing config)
     initFirebase();
-    
-    document.addEventListener("keydown", checkKeyValues);
-    setIsReady(true);
-
-    return () => {
-      document.removeEventListener("keydown", checkKeyValues);
-    };
   }, []);
+
+  // Resume builder has its own clean layout
+  if (isResumeBuilder) {
+    return (
+      <html lang="en">
+        <head>
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <title>Resume Builder | Abhishek Sharma</title>
+        </head>
+        <body>{children}</body>
+      </html> 
+    );
+  }
 
   return (
     <html lang="en">
@@ -44,16 +46,7 @@ export default function RootLayout({
         <title>Abhishek Sharma</title>
       </head>
       <body>
-        {isReady ? (
-          <>
-            <Navbar />
-            {children}
-            <Social />
-            {toggleTerminal && <Terminal />}
-          </>
-        ) : (
-          <div>Loading...</div>
-        )}
+        {children}
       </body>
     </html>
   );
