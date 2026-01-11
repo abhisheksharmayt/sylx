@@ -34,6 +34,14 @@ a {
   line-height: 0;
 }
 
+.portfolio-link {
+  text-decoration: none;
+}
+
+.portfolio-link:hover {
+  text-decoration: underline;
+}
+
 div {
   margin: 0;
 }
