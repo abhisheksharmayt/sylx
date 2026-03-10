@@ -167,10 +167,11 @@ export default function HomePage() {
         href="/archive"
         className="portfolio-link"
         style={{
-          position: "absolute",
-          bottom: "2rem",
+          marginTop: "auto",
+          paddingBottom: "2rem",
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: "0.5rem",
           color: "#666",
           fontSize: "0.875rem",
