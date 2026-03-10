@@ -134,8 +134,8 @@ export default function HomePage() {
                   padding: "0.75rem 1rem",
                 }}
               >
-                <span style={{ fontWeight: 500 }}>{tool.name}</span>
-                <span style={{ flexShrink: 0, color: "#999" }}>
+                <span className="tool-name" style={{ fontWeight: 500 }}>{tool.name}</span>
+                <span className="tool-arrow" style={{ flexShrink: 0 }}>
                   <ArrowIcon />
                 </span>
               </span>

@@ -39,7 +39,37 @@ a {
 }
 
 .portfolio-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.tool-name {
+  position: relative;
+  display: inline-block;
+}
+
+.tool-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 7px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+
+.tool-name:hover::after {
+  width: 100%;
+}
+
+.tool-arrow {
+  color: #999;
+  transition: color 0.2s ease;
+}
+
+.portfolio-link:hover .tool-arrow {
+  color: #333;
 }
 
 div {
