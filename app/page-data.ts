@@ -14,4 +14,10 @@ export const previewTools: PreviewTool[] = [
     href: "https://texttowallpaper.sylx.in",
     previewImage: getPreviewImagePath("Text To Wallpaper"),
   },
+  {
+    id: "2",
+    name: "LinkShift",
+    href: "https://linkshift.sylx.in",
+    previewImage: getPreviewImagePath("LinkShift"),
+  },
 ];
