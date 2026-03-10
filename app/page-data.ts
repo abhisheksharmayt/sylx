@@ -17,7 +17,7 @@ export const previewTools: PreviewTool[] = [
   {
     id: "2",
     name: "LinkShift",
-    href: "https://linkshift.sylx.in",
+    href: "https://linkshift.sylx.in/privacy_policy",
     previewImage: getPreviewImagePath("LinkShift"),
   },
 ];
