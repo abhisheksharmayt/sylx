@@ -21,15 +21,27 @@ export function middleware(req: NextRequest) {
 
   // No subdomain - serve main site normally
   if (!subdomain) {
+    // Block /privacy_policy on main site (LinkShift-only page)
+    if (pathname === '/privacy_policy') {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
     return NextResponse.next();
   }
 
   // === SUBDOMAIN DETECTED ===
-  // Only allow the root path on subdomains
-  // Block all other routes (about, contact, experience, etc.)
-  
+  const isLinkShift = subdomain.toLowerCase() === 'linkshift';
+
+  // LinkShift subdomain: allow / and /privacy_policy only
+  if (isLinkShift) {
+    if (pathname === '/' || pathname === '/privacy_policy') {
+      return NextResponse.next();
+    }
+    const redirectUrl = new URL('/', req.url);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // Other subdomains (e.g. resume): only allow root path
   if (pathname !== '/') {
-    // Redirect any non-root path back to root of the subdomain
     const redirectUrl = new URL('/', req.url);
     return NextResponse.redirect(redirectUrl);
   }
