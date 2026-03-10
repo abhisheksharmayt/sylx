@@ -137,17 +137,5 @@ html {
     grid-template-columns: repeat(2, 1fr);
     max-width: 52rem !important;
   }
-
-  /* Row height set by JS to shorter image; overflow crops taller image from bottom */
-  .tools-preview-list li .portfolio-link > span:first-child {
-    overflow: hidden;
-    display: block;
-  }
-
-  .tools-preview-list li .portfolio-link > span:first-child img {
-    width: 100% !important;
-    height: auto !important;
-    vertical-align: top;
-  }
 }
 

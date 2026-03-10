@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { previewTools } from "./page-data";
-import { EqualizePreviewHeights } from "./equalize-preview-heights";
 
 const ArrowIcon = () => (
   <svg
@@ -40,7 +39,6 @@ export default function HomePage() {
         boxSizing: "border-box",
       }}
     >
-      <EqualizePreviewHeights />
       <h1
         style={{
           fontSize: "clamp(1.5rem, 5vw, 3rem)",
