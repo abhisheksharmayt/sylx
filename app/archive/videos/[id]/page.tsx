@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import Work from "@/components/archive/videos/Work";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 interface PageProps {
   params: Promise<{
