@@ -10,35 +10,35 @@ const ogImageUrl = `${siteUrl}/images/utility-products-portfolio-og.png`;
 export const metadata: Metadata = {
   metadataBase: new URL("https://sylx.in"),
   title: {
-    default: "Abhishek Sharma | Utility Products & Developer Tools",
-    template: "%s | Abhishek Sharma",
+    default: "Sylx | Utility Products & Developer Tools",
+    template: "%s | Sylx",
   },
   description:
-    "Explore utility products, small experiments, and developer tools by Abhishek Sharma. A focused portfolio of tools that make everyday workflows easier for developers and creators.",
+    "Explore utility products, small experiments, and developer tools by Sylx. A focused portfolio of tools that make everyday workflows easier for developers and creators.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Abhishek Sharma – Utility Products & Developer Tools",
+    title: "Sylx – Utility Products & Developer Tools",
     description:
       "Basecamp for utility products, experiments, and small tools that enhance everyday workflows for developers and creators.",
     url: "https://sylx.in/",
-    siteName: "Abhishek Sharma",
+    siteName: "Sylx",
     type: "website",
     images: [
       {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: "Abhishek Sharma utility products and developer tools portfolio",
+        alt: "Sylx utility products and developer tools portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abhishek Sharma – Utility Products & Developer Tools",
+    title: "Sylx – Utility Products & Developer Tools",
     description:
-      "A curated portfolio of utility products and developer tools built by Abhishek Sharma.",
+      "Explore utility products, small experiments, and developer tools by Sylx. A focused portfolio of tools that make everyday workflows easier for developers and creators.",
   },
   icons: {
     icon: "/favicon.ico",
@@ -70,7 +70,7 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "Abhishek Sharma Resume Builder",
+                name: "Sylx Resume Builder",
                 url: "https://resume.sylx.in",
               }),
             }}
@@ -91,7 +91,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Abhishek Sharma",
+              name: "Sylx",
               url: siteUrl,
               sameAs: [
                 "https://github.com/abhisheksharmayt",
@@ -107,7 +107,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Abhishek Sharma – Utility Products & Developer Tools",
+              name: "Sylx – Utility Products & Developer Tools",
               url: siteUrl,
             }),
           }}
