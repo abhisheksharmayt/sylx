@@ -4,6 +4,7 @@
   --bluish: #30475E;
   --carrot: #F05454;
   --darkLightShade: #696c6f;
+  --home-max-width: 36rem;
 }
 
 ::-webkit-scrollbar {
@@ -31,7 +32,8 @@
 
 a {
   text-decoration: none;
-  line-height: 0;
+  /* Avoid collapsing text line boxes inside anchors. */
+  line-height: inherit;
 }
 
 .portfolio-link {
@@ -39,12 +41,13 @@ a {
 }
 
 .portfolio-link:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .tool-name {
   position: relative;
   display: inline-block;
+  width: fit-content;
 }
 
 .tool-name::after {
@@ -52,7 +55,7 @@ a {
   position: absolute;
   left: 0;
   top: 100%;
-  margin-top: 7px;
+  margin-top: 1px;
   width: 0;
   height: 1px;
   background: currentColor;
@@ -66,6 +69,17 @@ a {
 .tool-arrow {
   color: #999;
   transition: color 0.2s ease;
+}
+
+.tool-description {
+  line-height: 1.25;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* Reserve consistent height so grid row sizing isn't affected by wrapping. */
+  min-height: calc(1.25em * 2);
 }
 
 .portfolio-link:hover .tool-arrow {
@@ -135,7 +149,21 @@ html {
   .tools-preview-list {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr);
-    max-width: 52rem !important;
+    /* Keep cards aligned with the rest of the home page container. */
+    max-width: var(--home-max-width) !important;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --home-max-width: 48rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --home-max-width: 56rem;
   }
 }
 

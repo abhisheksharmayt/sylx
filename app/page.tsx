@@ -1,6 +1,50 @@
 import Link from "next/link";
 import Image from "next/image";
 import { previewTools } from "./page-data";
+import fs from "node:fs";
+import path from "node:path";
+
+function getPngDimensions(filePath: string): { width: number; height: number } | null {
+  try {
+    const buf = fs.readFileSync(filePath);
+    // PNG: IHDR is the first chunk after the 8-byte signature.
+    // Width/height are stored as 32-bit big-endian integers at offsets 16 and 20.
+    if (buf.length < 24) return null;
+    const width = buf.readUInt32BE(16);
+    const height = buf.readUInt32BE(20);
+    if (!width || !height) return null;
+    return { width, height };
+  } catch {
+    return null;
+  }
+}
+
+function getBaselinePreviewAspectRatioCss(tools: typeof previewTools): string {
+  // Height (for a given width) is proportional to 1 / (width/height).
+  // To match "smallest card height in the row", we pick the *largest* image aspect ratio.
+  let best: { width: number; height: number } | null = null;
+
+  for (const tool of tools) {
+    if (!tool.previewImage) continue;
+    // previewImage is a public URL (/images/toolsImage/*.png), but we need the on-disk path.
+    const absPath = path.join(
+      process.cwd(),
+      "public",
+      tool.previewImage.replace(/^\//, "")
+    );
+    const dims = getPngDimensions(absPath);
+    if (!dims) continue;
+    if (!best) {
+      best = dims;
+      continue;
+    }
+    if (dims.width / dims.height > best.width / best.height) best = dims;
+  }
+
+  return best ? `${best.width} / ${best.height}` : "5 / 3";
+}
+
+const BASELINE_PREVIEW_ASPECT_RATIO_CSS = getBaselinePreviewAspectRatioCss(previewTools);
 
 const ArrowIcon = () => (
   <svg
@@ -53,46 +97,33 @@ export default function HomePage() {
             lineHeight: 1.2,
           }}
         >
-          Utility products and tools by Abhishek Sharma
+          Basecamp for utility products
         </h1>
         <p
           style={{
             marginTop: "0.75rem",
-            marginBottom: 0,
+            marginBottom: "1.5rem",
             fontSize: "0.95rem",
             color: "#555",
           }}
         >
-          Basecamp for utility products, experiments, and small tools that make everyday workflows a
-          little easier for developers and creators.
+          Small tools that make everyday workflows easier.
         </p>
       </header>
 
       <section
-        aria-labelledby="featured-utility-products-heading"
-        style={{ width: "100%", maxWidth: "32rem" }}
+        aria-label="Featured utility products"
+        style={{ width: "100%", maxWidth: "var(--home-max-width)" }}
       >
-        <h2
-          id="featured-utility-products-heading"
-          style={{
-            margin: "1.75rem 0 0.5rem",
-            fontSize: "1rem",
-            fontWeight: 600,
-            color: "#444",
-          }}
-        >
-          Featured utility products
-        </h2>
-
         <ul
           className="tools-preview-list"
           style={{
             listStyle: "none",
-            margin: "0.5rem 0 0",
+            margin: 0,
             padding: 0,
             display: "flex",
             flexDirection: "column",
-            gap: "1rem",
+            gap: "1.1rem",
             width: "100%",
           }}
         >
@@ -101,20 +132,22 @@ export default function HomePage() {
             display: "flex",
             flexDirection: "column" as const,
             color: "#333",
-            fontSize: "0.875rem",
+            fontSize: "0.95rem",
             textDecoration: "none",
             border: "1px solid #eee",
             borderRadius: "8px",
             boxSizing: "border-box" as const,
             overflow: "hidden",
           };
-          const previewAspectRatio = "5 / 3";
+          const previewAspectRatio = BASELINE_PREVIEW_ASPECT_RATIO_CSS;
           const content = (
             <>
               {tool.previewImage ? (
                 <span
                   style={{
                     display: "block",
+                    position: "relative",
+                    aspectRatio: previewAspectRatio,
                     lineHeight: 0,
                     width: "100%",
                     margin: 0,
@@ -125,15 +158,15 @@ export default function HomePage() {
                   <Image
                     src={tool.previewImage}
                     alt={tool.alt ?? tool.name}
-                    width={1200}
-                    height={720}
-                    sizes="(max-width: 32rem) 100vw, 32rem"
+                    fill
+                    sizes="(max-width: 36rem) 100vw, 36rem"
                     style={{
                       width: "100%",
-                      height: "auto",
+                      height: "100%",
                       margin: 0,
                       display: "block",
                       verticalAlign: "middle",
+                      objectFit: "cover",
                     }}
                   />
                 </span>
@@ -141,6 +174,7 @@ export default function HomePage() {
                 <span
                   style={{
                     display: "flex",
+                    position: "relative",
                     alignItems: "center",
                     justifyContent: "center",
                     width: "100%",
@@ -151,6 +185,7 @@ export default function HomePage() {
                     color: "#666",
                     textAlign: "center",
                     padding: "1rem",
+                    overflow: "hidden",
                   }}
                 >
                   {tool.name}
@@ -162,26 +197,25 @@ export default function HomePage() {
                   alignItems: "flex-start",
                   justifyContent: "space-between",
                   gap: "0.75rem",
-                  padding: "0.75rem 1rem",
+                  padding: "0.9rem 1.1rem",
                 }}
               >
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   <span className="tool-name" style={{ fontWeight: 500 }}>
                     {tool.name}
                   </span>
-                  {tool.description && (
-                    <p
-                      style={{
-                        margin: 0,
-                        fontSize: "0.8rem",
-                        color: "#555",
-                      }}
-                    >
-                      {tool.description}
-                    </p>
-                  )}
+                  <p
+                    className="tool-description"
+                    style={{
+                      margin: 0,
+                      fontSize: "0.85rem",
+                      color: "#555",
+                    }}
+                  >
+                    {tool.description ?? ""}
+                  </p>
                 </div>
-                <span className="tool-arrow" style={{ flexShrink: 0, marginTop: "0.15rem" }}>
+                <span className="tool-arrow" style={{ flexShrink: 0, marginTop: "0.1rem" }}>
                   <ArrowIcon />
                 </span>
               </div>
@@ -210,14 +244,22 @@ export default function HomePage() {
         </ul>
       </section>
 
-      <nav aria-label="Portfolio navigation" style={{ width: "100%", maxWidth: "32rem" }}>
+      <nav
+        aria-label="Portfolio navigation"
+        style={{
+          width: "100%",
+          maxWidth: "var(--home-max-width)",
+          marginTop: "auto", // pushes the archive link to the bottom of the viewport
+          paddingTop: "2rem",
+          paddingBottom: "1rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Link
           href="/archive"
           className="portfolio-link"
           style={{
-            marginTop: "auto",
-            paddingTop: "2rem",
-            paddingBottom: "1rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
