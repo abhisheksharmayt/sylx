@@ -24,7 +24,7 @@ export const previewTools: PreviewTool[] = [
   {
     id: "2",
     name: "LinkShift",
-    href: "https://linkshift.sylx.in/privacy_policy",
+    href: "https://chromewebstore.google.com/detail/jhfcfkpjfaekdcpahmmchdcghdbhgill",
     previewImage: getPreviewImagePath("LinkShift"),
     description:
       "Smart link tool for shifting, shortening, and organizing URLs with simple, privacy-friendly controls.",
