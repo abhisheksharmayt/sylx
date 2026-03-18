@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "@/styles/globals.css";
 import { getSubdomain } from "@/utils/common";
-import { initFirebase } from "@/lib/firebase";
-import { useEffect, useMemo } from "react";
 
 const siteUrl = "https://sylx.in";
 const ogImageUrl = `${siteUrl}/images/utility-products-portfolio-og.png`;
@@ -50,13 +49,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Check if we are on users resume page
-  const isResumeBuilder = useMemo(() => getSubdomain(), []);
-
-  useEffect(() => {
-    // Initialize Firebase (will gracefully handle missing config)
-    initFirebase();
-  }, []);
+  // Check if we are on user's resume page.
+  // We must use server-side host detection because Server Components don't have access to `window`.
+  const host = headers().get("host") ?? undefined;
+  const isResumeBuilder = getSubdomain(host);
 
   // Resume builder has its own clean layout
   if (isResumeBuilder) {
