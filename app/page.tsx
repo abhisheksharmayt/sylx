@@ -180,7 +180,7 @@ export default function HomePage() {
                     width: "100%",
                     aspectRatio: previewAspectRatio,
                     background: "#f5f5f5",
-                    fontSize: "1rem",
+                    fontSize: "1.5rem",
                     fontWeight: 600,
                     color: "#666",
                     textAlign: "center",

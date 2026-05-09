@@ -4,13 +4,23 @@ export interface PreviewTool {
   id: string;
   name: string;
   href: string;
-  previewImage?: string;
+  previewImage?: string | null;
   description?: string;
   alt?: string;
   tags?: string[];
 }
 
 export const previewTools: PreviewTool[] = [
+  {
+    id: "3",
+    name: "AI Mock Interview",
+    href: "https://github.com/abhisheksharmayt/AI-Mock-Interview",
+    previewImage: getPreviewImagePath("AI Mock Interview"),
+    description:
+      "AI-powered mock interview platform that delivers personalized, voice-first interviews based on a candidate's resume and job description.",
+    alt: "AI Mock Interview preview placeholder",
+    tags: ["ai", "interview", "voice-first", "resume"],
+  },
   {
     id: "1",
     name: "Text To Wallpaper",
