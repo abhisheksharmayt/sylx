@@ -42,14 +42,19 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  // DoodleSync subdomain: allow /privacy_policy only, rewrite to doodlesync_privacy page
+  // DoodleSync subdomain: allow /privacy_policy and /support
   if (isDoodleSync) {
     if (pathname === '/privacy_policy') {
       const url = req.nextUrl.clone();
       url.pathname = '/doodlesync_privacy';
       return NextResponse.rewrite(url);
     }
-    const redirectUrl = new URL('/privacy_policy', req.url);
+    if (pathname === '/support') {
+      const url = req.nextUrl.clone();
+      url.pathname = '/doodlesync_support';
+      return NextResponse.rewrite(url);
+    }
+    const redirectUrl = new URL('/support', req.url);
     return NextResponse.redirect(redirectUrl);
   }
 
