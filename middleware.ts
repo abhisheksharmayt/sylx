@@ -29,7 +29,9 @@ export function middleware(req: NextRequest) {
   }
 
   // === SUBDOMAIN DETECTED ===
-  const isLinkShift = subdomain.toLowerCase() === 'linkshift';
+  const subdomainLower = subdomain.toLowerCase();
+  const isLinkShift = subdomainLower === 'linkshift';
+  const isDoodleSync = subdomainLower === 'doodlesync';
 
   // LinkShift subdomain: allow / and /privacy_policy only
   if (isLinkShift) {
@@ -37,6 +39,17 @@ export function middleware(req: NextRequest) {
       return NextResponse.next();
     }
     const redirectUrl = new URL('/', req.url);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  // DoodleSync subdomain: allow /privacy_policy only, rewrite to doodlesync_privacy page
+  if (isDoodleSync) {
+    if (pathname === '/privacy_policy') {
+      const url = req.nextUrl.clone();
+      url.pathname = '/doodlesync_privacy';
+      return NextResponse.rewrite(url);
+    }
+    const redirectUrl = new URL('/privacy_policy', req.url);
     return NextResponse.redirect(redirectUrl);
   }
 
