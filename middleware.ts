@@ -31,7 +31,6 @@ export function middleware(req: NextRequest) {
   // === SUBDOMAIN DETECTED ===
   const subdomainLower = subdomain.toLowerCase();
   const isLinkShift = subdomainLower === 'linkshift';
-  const isDoodleSync = subdomainLower === 'doodlesync';
 
   // LinkShift subdomain: allow / and /privacy_policy only
   if (isLinkShift) {
@@ -39,22 +38,6 @@ export function middleware(req: NextRequest) {
       return NextResponse.next();
     }
     const redirectUrl = new URL('/', req.url);
-    return NextResponse.redirect(redirectUrl);
-  }
-
-  // DoodleSync subdomain: allow /privacy_policy and /support
-  if (isDoodleSync) {
-    if (pathname === '/privacy_policy') {
-      const url = req.nextUrl.clone();
-      url.pathname = '/doodlesync_privacy';
-      return NextResponse.rewrite(url);
-    }
-    if (pathname === '/support') {
-      const url = req.nextUrl.clone();
-      url.pathname = '/doodlesync_support';
-      return NextResponse.rewrite(url);
-    }
-    const redirectUrl = new URL('/support', req.url);
     return NextResponse.redirect(redirectUrl);
   }
 
