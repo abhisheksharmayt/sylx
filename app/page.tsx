@@ -243,35 +243,6 @@ export default function HomePage() {
         })}
         </ul>
       </section>
-
-      <nav
-        aria-label="Portfolio navigation"
-        style={{
-          width: "100%",
-          maxWidth: "var(--home-max-width)",
-          marginTop: "auto", // pushes the archive link to the bottom of the viewport
-          paddingTop: "2rem",
-          paddingBottom: "1rem",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Link
-          href="/archive"
-          className="portfolio-link"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.5rem",
-            color: "#666",
-            fontSize: "0.875rem",
-          }}
-        >
-          View full portfolio archive
-          <ArrowIcon />
-        </Link>
-      </nav>
     </main>
   );
 }
