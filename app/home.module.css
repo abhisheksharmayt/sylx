@@ -31,6 +31,27 @@
   color: #667e65;
 }
 
+.topLinks {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.keepGoingLink {
+  color: #4e6453;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.keepGoingLink:hover {
+  color: #222723;
+}
+
+.keepGoingLink:focus-visible {
+  outline: 3px solid #6e9276;
+  outline-offset: 5px;
+}
+
 .githubLink {
   display: inline-flex;
   min-height: 42px;

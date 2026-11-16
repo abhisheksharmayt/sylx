@@ -1,0 +1,146 @@
+.page {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 32px clamp(16px, 2.5vw, 32px) 48px;
+  background: #1a1a1a;
+  color: #ededed;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.shell {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+}
+
+.breadcrumb svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.breadcrumb a {
+  color: inherit;
+}
+
+.breadcrumb a:hover {
+  color: #ededed;
+  text-decoration: underline;
+}
+
+.breadcrumb a:focus-visible,
+.controls button:focus-visible {
+  outline: 2px solid #ededed;
+  outline-offset: 3px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: -72px 0 32px;
+}
+
+.controls button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.controls button:hover:not(:disabled) {
+  background: #262626;
+  color: #ededed;
+}
+
+.controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.controls svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gallery {
+  column-gap: 16px;
+}
+
+.imageCard {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+}
+
+.imageCard img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 25%);
+  transition: box-shadow 300ms ease;
+}
+
+.imageCard img:hover {
+  box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
+}
+
+.footer {
+  margin-top: 48px;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .controls {
+    display: none;
+  }
+
+  .gallery {
+    column-count: 1 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controls button,
+  .imageCard img {
+    transition: none;
+  }
+}

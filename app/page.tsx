@@ -82,16 +82,21 @@ export default function HomePage() {
       <div className={styles.shell}>
         <div className={styles.topline}>
           <span className={styles.wordmark}>SYLX<span className={styles.wordmarkDot}>.</span></span>
-          <a
-            className={styles.githubLink}
-            href="https://github.com/abhisheksharmayt"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View my GitHub profile"
-          >
-            <Image src="/icons/github-142.svg" alt="" width={19} height={19} />
-            <span>GitHub</span>
-          </a>
+          <nav className={styles.topLinks} aria-label="Main navigation">
+            <Link className={styles.keepGoingLink} href="/keep-going">
+              Keep going <span aria-hidden="true">↗</span>
+            </Link>
+            <a
+              className={styles.githubLink}
+              href="https://github.com/abhisheksharmayt"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View my GitHub profile"
+            >
+              <Image src="/icons/github-142.svg" alt="" width={19} height={19} />
+              <span>GitHub</span>
+            </a>
+          </nav>
         </div>
 
         <header className={styles.hero}>

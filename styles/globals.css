@@ -29,6 +29,25 @@
   display:none;
 }
 
+html:has([data-page="keep-going"]),
+body:has([data-page="keep-going"]) {
+  background: #1a1a1a;
+  scrollbar-color: #4b4b4b #1a1a1a;
+}
+
+html:has([data-page="keep-going"])::-webkit-scrollbar,
+html:has([data-page="keep-going"])::-webkit-scrollbar-track,
+body:has([data-page="keep-going"])::-webkit-scrollbar,
+body:has([data-page="keep-going"])::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+html:has([data-page="keep-going"])::-webkit-scrollbar-thumb,
+body:has([data-page="keep-going"])::-webkit-scrollbar-thumb {
+  background: #4b4b4b;
+  border-color: #1a1a1a;
+}
+
 a {
   text-decoration: none;
   /* Avoid collapsing text line boxes inside anchors. */
