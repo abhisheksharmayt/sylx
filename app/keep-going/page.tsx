@@ -13,6 +13,10 @@ export const metadata: Metadata = {
 
 const imageDirectory = path.join(process.cwd(), "public", "images", "keep-going");
 const supportedImage = /\.(avif|gif|jpe?g|png|webp)$/i;
+const imageDescriptions: Record<string, string> = {
+  "01-figure-it-out.png": "Quote about building a reputation for figuring things out",
+  "02-life-reminders.png": "Life reminders to read, walk, learn, be grateful, take risks, and care deeply",
+};
 
 async function getImages() {
   const files = await readdir(imageDirectory);
@@ -22,13 +26,10 @@ async function getImages() {
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     .map((file) => ({
       src: `/images/keep-going/${encodeURIComponent(file)}`,
-      alt:
-        file === "01-figure-it-out.png"
-          ? "Quote about building a reputation for figuring things out"
-          : file
-              .replace(supportedImage, "")
-              .replace(/^\d+[\s._-]*/, "")
-              .replace(/[-_]+/g, " "),
+      alt: imageDescriptions[file] ?? file
+        .replace(supportedImage, "")
+        .replace(/^\d+[\s._-]*/, "")
+        .replace(/[-_]+/g, " "),
     }));
 }
 
